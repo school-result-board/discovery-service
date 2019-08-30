@@ -20,7 +20,8 @@ dependencies {
     compile(project(":application"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    runtime("org.glassfish.jaxb:jaxb-runtime")
+    compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
 }
 
 dependencyManagement {

@@ -10,6 +10,8 @@ plugins {
 group = "com.hoona.zaid.discovery"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
+extra["springBootVersion"] = "2.1.6.RELEASE"
+extra["springCloudVersion"] = "Greenwich.RELEASE"
 
 repositories {
     jcenter()
@@ -21,7 +23,13 @@ dependencies {
     compile(project(":framework"))
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.boot:spring-boot-starter-parent:${property("springBootVersion")}")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+    }
 }
 
 tasks.withType<KotlinCompile> {
