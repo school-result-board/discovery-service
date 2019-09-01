@@ -2,5 +2,29 @@ eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
-server:
-  port: 8761
+zuul:
+  routes:
+    result-service:
+      path: /result-service/**
+      serviceId: result-service
+      stripPrefix: true
+    score-service:
+      path: /score-service/**
+      serviceId: score-service
+      stripPrefix: true
+    student-service:
+      path: /student-service/**
+      serviceId: student-service
+      stripPrefix: true
+ribbon:
+  eureka:
+    enabled: false
+result-service:
+  ribbon:
+    listOfServers: http://result-service
+score-service:
+  ribbon:
+    listOfServers: http://score-service
+student-service:
+  ribbon:
+    listOfServers: http://student-service
